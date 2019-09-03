@@ -18,6 +18,8 @@ Route::view('/', 'site.partials.header2');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Auth::routes();
 
+Route::view('/about','site.pages.about');
+
 Route::get('/category/{slug}', 'Site\CategoryController@show')->name('category.show');
 
 
