@@ -19,5 +19,3 @@ Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Auth::routes();
 
 Route::get('/category/{slug}', 'Site\CategoryController@show')->name('category.show');
-
-
