@@ -19,6 +19,11 @@ class CategoriesTableSeeder extends Seeder
             'menu'          =>  0,
         ]);
 
-        factory('App\Models\Category', 10)->create();
+        Category::create([
+            'name'          =>  'asdf',
+            'description'   =>  'This is the root category, don\'t delete this one',
+            'parent_id'     =>  1,
+            'menu'          =>  1,
+        ]);
     }
 }
