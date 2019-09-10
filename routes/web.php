@@ -12,6 +12,14 @@
 */
 require 'admin.php';
 
+Route::get('test', function(){
+    Cart::remove('3');
+});
+
+Route::get('myid', function(){
+    return Cart::getContent();
+});
+
 Route::view('/homepage', 'site.pages.homepage');
 
 Route::view('/katalog', 'site.pages.category2');
@@ -22,4 +30,9 @@ Auth::routes();
 
 Route::get('/category/{slug}', 'Site\CategoryController@show')->name('category.show');
 Route::get('/products/{slug}', 'Site\ProductController@show')->name('product.show');
+
+//cart
+Route::get('cart', 'CartController@index');
+Route::get('cart/add/{id}', 'CartController@addItem');
+Route::get('cart/remove/{id}', 'CartController@removeItem');
 

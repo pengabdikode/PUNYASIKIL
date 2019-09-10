@@ -111,7 +111,7 @@
                                     <p class="text-success">Free shipping</p>
                                     <br>
                                     <p>
-                                        <a href="#" class="btn btn-primary"> Buy now </a>
+                                    <a href="{{url('/cart/add')}}/{{$product->id}}" class="btn btn-primary"> Add To Cart </a>
                                         <a href="#" class="btn btn-secondary"> Details  </a>
                                     </p>
                                 </div>
