@@ -19,6 +19,27 @@ class CategoriesTableSeeder extends Seeder
             'menu'          =>  0,
         ]);
 
-        factory('App\Models\Category', 10)->create();
+        Category::create([
+            'name'          =>  'Men',
+            'description'   =>  'Men Shoes',
+            'parent_id'     =>  1,
+            'menu'          =>  0,
+        ]);
+
+        Category::create([
+            'name'          =>  'Women',
+            'description'   =>  'Women Shoes',
+            'parent_id'     =>  1,
+            'menu'          =>  0,
+        ]);
+
+        Category::create([
+            'name'          =>  'Kids',
+            'description'   =>  'Kids Shoes',
+            'parent_id'     =>  1,
+            'menu'          =>  0,
+        ]);
+
+        
     }
 }

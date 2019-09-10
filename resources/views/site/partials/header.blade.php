@@ -43,6 +43,7 @@
                                 </div>
                             </a>
                         </div>
+            
                         @guest
                             <div class="widget-header">
                                 <a href="{{ route('login') }}" class="ml-3 icontext">

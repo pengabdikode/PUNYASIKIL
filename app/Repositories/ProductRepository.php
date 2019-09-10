@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Repositories;
-
 use App\Models\Product;
 use App\Traits\UploadAble;
 use Illuminate\Http\UploadedFile;
@@ -9,7 +7,6 @@ use App\Contracts\ProductContract;
 use Illuminate\Database\QueryException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Doctrine\Instantiator\Exception\InvalidArgumentException;
-
 /**
  * Class ProductRepository
  *
@@ -18,7 +15,6 @@ use Doctrine\Instantiator\Exception\InvalidArgumentException;
 class ProductRepository extends BaseRepository implements ProductContract
 {
     use UploadAble;
-
     /**
      * ProductRepository constructor.
      * @param Product $model
@@ -28,7 +24,6 @@ class ProductRepository extends BaseRepository implements ProductContract
         parent::__construct($model);
         $this->model = $model;
     }
-
     /**
      * @param string $order
      * @param string $sort
@@ -39,7 +34,6 @@ class ProductRepository extends BaseRepository implements ProductContract
     {
         return $this->all($columns, $order, $sort);
     }
-
     /**
      * @param int $id
      * @return mixed
@@ -49,14 +43,10 @@ class ProductRepository extends BaseRepository implements ProductContract
     {
         try {
             return $this->findOneOrFail($id);
-
         } catch (ModelNotFoundException $e) {
-
             throw new ModelNotFoundException($e);
         }
-
     }
-
     /**
      * @param array $params
      * @return Product|mixed
@@ -65,26 +55,19 @@ class ProductRepository extends BaseRepository implements ProductContract
     {
         try {
             $collection = collect($params);
-
             $featured = $collection->has('featured') ? 1 : 0;
             $status = $collection->has('status') ? 1 : 0;
-
             $merge = $collection->merge(compact('status', 'featured'));
-
             $product = new Product($merge->all());
-
             $product->save();
-
             if ($collection->has('categories')) {
                 $product->categories()->sync($params['categories']);
             }
             return $product;
-
         } catch (QueryException $exception) {
             throw new InvalidArgumentException($exception->getMessage());
         }
     }
-
     /**
      * @param array $params
      * @return mixed
@@ -92,23 +75,16 @@ class ProductRepository extends BaseRepository implements ProductContract
     public function updateProduct(array $params)
     {
         $product = $this->findProductById($params['product_id']);
-
         $collection = collect($params)->except('_token');
-
         $featured = $collection->has('featured') ? 1 : 0;
         $status = $collection->has('status') ? 1 : 0;
-
         $merge = $collection->merge(compact('status', 'featured'));
-
         $product->update($merge->all());
-
         if ($collection->has('categories')) {
             $product->categories()->sync($params['categories']);
         }
-
         return $product;
     }
-
     /**
      * @param $id
      * @return bool|mixed
@@ -116,9 +92,16 @@ class ProductRepository extends BaseRepository implements ProductContract
     public function deleteProduct($id)
     {
         $product = $this->findProductById($id);
-
         $product->delete();
-
+        return $product;
+    }
+    /**
+     * @param $slug
+     * @return mixed
+     */
+    public function findProductBySlug($slug)
+    {
+        $product = Product::where('slug', $slug)->first();
         return $product;
     }
 }
