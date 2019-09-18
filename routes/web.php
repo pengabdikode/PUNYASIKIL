@@ -19,7 +19,7 @@ Route::view('/checkout', 'site.pages.checkout');
 
 Route::view('/', 'site.partials.header2');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/category/{slug}', 'Site\CategoryController@show')->name('category.show');
 Route::get('/products/{slug}', 'Site\ProductController@show')->name('product.show');
@@ -36,3 +36,4 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/checkout', 'Site\CheckoutController@getCheckout')->name('checkout.index');
     Route::post('/checkout/order', 'Site\CheckoutController@placeOrder')->name('checkout.place.order');
 });
+
