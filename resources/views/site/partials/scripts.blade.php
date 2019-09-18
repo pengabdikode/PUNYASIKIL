@@ -23,4 +23,5 @@ $('.owl-carousel').owlCarousel({
 })
 
 </script>
+@stack('scripts')
 

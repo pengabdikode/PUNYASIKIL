@@ -22,8 +22,8 @@ class CreateProductsTable extends Migration
             $table->text('description')->nullable();
             $table->unsignedInteger('quantity');
             $table->decimal('weight', 8, 2)->nullable();
-            $table->decimal('price', 8, 2)->nullable();
-            $table->decimal('sale_price', 8, 2)->nullable();
+            $table->decimal('price', 10, 2)->nullable();
+            $table->decimal('sale_price', 10, 2)->nullable();
             $table->boolean('status')->default(1);
             $table->boolean('featured')->default(0);
 

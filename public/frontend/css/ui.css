@@ -366,7 +366,7 @@ article:after,
   /* Standard syntax */ }
 
 .bg {
-  background-color: #f8f8f8 !important; }
+  background-color: #908d8d !important; }
 
 .bg2 {
   background-color: #000000 !important; }
@@ -1657,7 +1657,9 @@ article:after,
   background-size: cover; }
   .section-pagetop .title-page {
     color: #fee600;
-    opacity: .6; }
+    opacity: .6;
+     }
+   
 
 /* ================== PAGE DETAILS ==================  */
 .gallery-wrap .img-big-wrap {
@@ -2258,5 +2260,41 @@ ul.row, ul.row-sm {
   .menu-category li:hover .submenu {
     display: block;
     margin-left: 0px; }
+  
+    .brushstroke {
+      background: url('waterbrush2.png');
+      background-repeat: no-repeat;
+      background-size: 100% 95%;
+      padding: 8px 0;
+      }
 
-/*# sourceMappingURL=ui.css.map */
+      .hover:before {
+        text-align: center;
+        margin: 0 auto;
+        padding: 0;
+        transition: all 0.2s ease-in-out ;
+        position: relative;
+      }
+    
+      nav.stroke ul li a,
+nav.fill ul li a {
+  position: relative;
+}
+nav.stroke ul li a:after,
+nav.fill ul li a:after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 0%;
+  content: '.';
+  color: transparent;
+  background: #aaa;
+  height: 1px;
+}
+nav.stroke ul li a:hover:after {
+  width: 100%;
+}
+       
+  

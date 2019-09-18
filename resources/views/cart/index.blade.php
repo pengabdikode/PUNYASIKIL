@@ -20,7 +20,7 @@
                                 <tr>
                                     <td>
                                         <figure class="media">
-                                            <div class="img-wrap"><img src="images/items/1.jpg" class="img-thumbnail img-sm"></div>
+                                            <div class="img-wrap"><img src="{{ asset('storage/'.$product->images) }}" class="img-thumbnail img-sm"></div>
                                             <figcaption class="media-body">
                                                 <h6 class="title text-truncate">{{$product->name}}</h6>
                                                 <dl class="dlist-inline small">
@@ -84,7 +84,7 @@
                             <br> Lorem ipsum dolor
                         </div>
                     </figure>
-                    <a href="#" class="btn btn-success btn-lg btn-block">Proceed To Checkout</a>
+                    <a href="{{ route('checkout.index') }}" class="btn btn-success btn-lg btn-block">Proceed To Checkout</a>
                 </aside>
                 <!-- col.// -->
             </div>

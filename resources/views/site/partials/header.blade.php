@@ -18,7 +18,7 @@
                 <div class="col-lg-6 col-sm-6">
                     <div class="brand-wrap">
                         <a href="{{ url('/homepage') }}">
-                            <img class="logo" src="{{ asset('uploads/logobulet.png') }}" alt="logo">
+                            <img class="logo" src="{{ asset('uploads/SIKIL.png') }}" alt="logo">
                         </a>
                     </div>
                     {{-- <form action="#" class="search-wrap">
@@ -35,11 +35,11 @@
                 <div class="col-lg-3 col-sm-6">
                     <div class="widgets-wrap d-flex justify-content-end">
                         <div class="widget-header">
-                            <a href="/cart" class="icontext">
+                            <a href="{{route('checkout.cart')}}" class="icontext">
                                 <div class="icon-wrap icon-xs bg2 round text-secondary"><i
                                         class="fa fa-shopping-cart"></i></div>
                                 <div class="text-wrap">
-                                    <small></small>
+                                    <span class="badge badge-danger">{{ $cartCount }}
                                 </div>
                             </a>
                         </div>

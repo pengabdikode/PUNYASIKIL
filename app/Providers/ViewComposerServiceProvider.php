@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use Cart;
+
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductImage;
@@ -31,6 +33,10 @@ class ViewComposerServiceProvider extends ServiceProvider
 
         View::composer('site.pages.category2', function ($view) {
             $view->with('images', ProductImage::all());
+        });
+
+        View::composer('site.partials.header', function ($view) {
+            $view->with('cartCount', Cart::getContent()->count());
         });
     }
 

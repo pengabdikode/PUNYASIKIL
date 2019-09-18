@@ -12,17 +12,10 @@
 */
 require 'admin.php';
 
-Route::get('test', function(){
-    Cart::remove('3');
-});
-
-Route::get('myid', function(){
-    return Cart::getContent();
-});
 
 Route::view('/homepage', 'site.pages.homepage');
 
-Route::view('/katalog', 'site.pages.category2');
+Route::view('/checkout', 'site.pages.checkout');
 
 Route::view('/', 'site.partials.header2');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
@@ -30,9 +23,16 @@ Auth::routes();
 
 Route::get('/category/{slug}', 'Site\CategoryController@show')->name('category.show');
 Route::get('/products/{slug}', 'Site\ProductController@show')->name('product.show');
+Route::post('/product/add/cart', 'Site\ProductController@addToCart')->name('product.add.cart');
+
 
 //cart
-Route::get('cart', 'CartController@index');
-Route::get('cart/add/{id}', 'CartController@addItem');
-Route::get('cart/remove/{id}', 'CartController@removeItem');
+Route::get('/cart', 'Site\CartController@getCart')->name('checkout.cart');
+Route::get('/cart/item/{id}/remove', 'Site\CartController@removeItem')->name('checkout.cart.remove');
+Route::get('/cart/clear', 'Site\CartController@clearCart')->name('checkout.cart.clear');
 
+//checkout
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/checkout', 'Site\CheckoutController@getCheckout')->name('checkout.index');
+    Route::post('/checkout/order', 'Site\CheckoutController@placeOrder')->name('checkout.place.order');
+});

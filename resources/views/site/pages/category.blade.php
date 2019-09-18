@@ -91,7 +91,7 @@
                             </aside>
                             <!-- col.// -->
                             <article class="col-sm-6">
-                                    <h4 class="title"><a href="{{ route('product.show', $product->slug) }}">{{ $product->name }}</a></h4>
+                                    <h4 class="title"><a href="{{ route('product.show', $product->slug) }}"><span class="brushstroke">{{ $product->name }}</span></a></h4>
                             <p>{{$product->description}}</p>
                             </article>
                             <!-- col.// -->
@@ -99,20 +99,19 @@
                                 <div class="action-wrap">
                                     @if ($product->sale_price != 0)
                                     <div class="price-wrap h4">
-                                        <span class="price">{{ config('settings.currency_symbol').$product->sale_price }}</span>
-                                        <del class="price-old">{{ config('settings.currency_symbol').$product->price }}</del>
+                                        <span class="price">@currency($product->price)</span>
+                                        <del class="price-old"> @currency($product->price)</del>
                                     </div>
                                     @else
                                     <div class="price-wrap h4">
-                                            <span class="price">{{ config('settings.currency_symbol').$product->price }}</span>
+                                            <span class="price">@currency($product->price)</span>
                                     </div>
                                     @endif
                                     <!-- info-price-detail // -->
-                                    <p class="text-success">Free shipping</p>
                                     <br>
                                     <p>
-                                    <a href="{{url('/cart/add')}}/{{$product->id}}" class="btn btn-primary"> Add To Cart </a>
-                                        <a href="#" class="btn btn-secondary"> Details  </a>
+                                    <a href="{{ route('product.add.cart', $product->id) }}" class="btn btn-primary"> Add To Cart </a>
+                                        <a href="{{ route('product.show', $product->slug) }}" class="btn btn-secondary"> Details  </a>
                                     </p>
                                 </div>
                                 <!-- action-wrap.// -->
