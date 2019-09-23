@@ -52,12 +52,12 @@
                                     <div class="mb-3">
                                         @if ($product->sale_price > 0)
                                             <var class="price h3 text-danger">
-                                                <span class="num" id="productPrice">@currency($product->sale_price)</span>
-                                                <del class="price-old">@currency($product->price)</del>
+                                                <span class="num" id="productPrice">{{ config('settings.currency_symbol').$product->sale_price }}</span>
+                                                <del class="price-old">{{ config('settings.currency_symbol').$product->price }}</del>
                                             </var>
                                         @else
                                             <var class="price h3 text-success">
-                                                <span class="num" id="productPrice">@currency($product->price)</span>
+                                                <span class="num" id="productPrice">{{ config('settings.currency_symbol').$product->price }}</span>
                                             </var>
                                         @endif
                                     </div>

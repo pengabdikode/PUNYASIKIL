@@ -23,11 +23,11 @@ class SettingsTableSeeder extends Seeder
         ],
         [
             'key'                       =>  'currency_code',
-            'value'                     =>  'IDR',
+            'value'                     =>  'USD',
         ],
         [
             'key'                       =>  'currency_symbol',
-            'value'                     =>  'Rp. ',
+            'value'                     =>  '$',
         ],
         [
             'key'                       =>  'site_logo',
@@ -91,11 +91,11 @@ class SettingsTableSeeder extends Seeder
         ],
         [
             'key'                       =>  'paypal_client_id',
-            'value'                     =>  '',
+            'value'                     =>  'AfEzvOarleOzMsQ_vNH3vvzdeANd4aMA28vmTA_nZaN2gbzi8S5GlrshxpH8cuQShWWDPkAp6bK6c8Qk',
         ],
         [
             'key'                       =>  'paypal_secret_id',
-            'value'                     =>  '',
+            'value'                     =>  'EFmDti9xOmTSEow5Fzx3JAqa2EpG35lPACOlbfAtbao20cebTAkL5oXhJW-w_DAY976bqp9213-r1LxG',
         ],
     ];
 

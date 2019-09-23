@@ -12,6 +12,11 @@
 */
 require 'admin.php';
 
+//verify
+Auth::routes();
+Route::get('email/verify', 'Auth\VerificationController@show')->name('verification.verify');
+
+
 
 Route::view('/homepage', 'site.pages.homepage');
 
@@ -19,7 +24,7 @@ Route::view('/checkout', 'site.pages.checkout');
 
 Route::view('/', 'site.partials.header2');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
-Auth::routes(['verify' => true]);
+Route::get('/user/verify/{token}', 'Auth\RegisterController@verifyUser');
 
 Route::get('/category/{slug}', 'Site\CategoryController@show')->name('category.show');
 Route::get('/products/{slug}', 'Site\ProductController@show')->name('product.show');
@@ -36,4 +41,15 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/checkout', 'Site\CheckoutController@getCheckout')->name('checkout.index');
     Route::post('/checkout/order', 'Site\CheckoutController@placeOrder')->name('checkout.place.order');
 });
+
+//RajaOngkir
+Route::get('/province', 'RajaController@province');
+Route::get('/cost', 'RajaController@cost');
+
+//payment
+Route::get('checkout/payment/complete', 'Site\CheckoutController@complete')->name('checkout.payment.complete');
+
+//order user
+Route::get('account/orders', 'Site\AccountController@getOrders')->name('account.orders');
+
 

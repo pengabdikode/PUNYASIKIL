@@ -51,7 +51,7 @@
                                         </td>
                                         <td>
                                             <div class="price-wrap">
-                                                <var class="price">@currency($item->price)</var>
+                                                <var class="price">{{ config('settings.currency_symbol').$item->price }}</var>
                                                 <small class="text-muted">each</small>
                                             </div>
                                         </td>
@@ -66,6 +66,8 @@
                     @endif
                 </main>
                 <aside class="col-sm-3">
+                    <section class="section-content bg padding-y border-top">
+                    <div class="container">
                         <h3>Shipment Fee</h3>
                             
                             
@@ -74,6 +76,8 @@
 
                                 </select>
                             </form>
+                        </div>
+                    </section>
                        
                     
                     
@@ -81,7 +85,7 @@
                     <p class="alert alert-success">Add USD 5.00 of eligible items to your order to qualify for FREE Shipping. </p>
                     <dl class="dlist-align h4">
                         <dt>Total:</dt>
-                        <dd class="text-right"><strong>@currency(Cart::getSubTotal())</strong></dd>
+                        <dd class="text-right"><strong>{{ config('settings.currency_symbol') }}{{ \Cart::getSubTotal() }}</strong></dd>
                     </dl>
                     <hr>
                     <figure class="itemside mb-3">
@@ -102,8 +106,8 @@
             </div>
         </div>
     </section>
-    @push('scripts')
-    <script>
+@section('scripts')
+<script>
         $(document).ready(function(){
             $.ajax({
                 url : 'http://localhost:8000/province',
@@ -116,7 +120,12 @@
                     })
                 },
             }) 
+
+
+           
         })
     </script>
-    @endpush
+@endsection 
+    
+    
 @stop
