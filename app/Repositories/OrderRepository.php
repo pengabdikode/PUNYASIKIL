@@ -22,7 +22,7 @@ class OrderRepository extends BaseRepository implements OrderContract
             'order_number'      =>  'ORD-'.strtoupper(uniqid()),
             'user_id'           => auth()->user()->id,
             'status'            =>  'pending',
-            'grand_total'       =>  Cart::getSubTotal(),
+            'grand_total'       =>  Cart::getTotal(),
             'item_count'        =>  Cart::getTotalQuantity(),
             'payment_status'    =>  0,
             'payment_method'    =>  null,
@@ -58,4 +58,15 @@ class OrderRepository extends BaseRepository implements OrderContract
 
         return $order;
     }
+
+    public function listOrders(string $order = 'id', string $sort = 'desc', array $columns = ['*'])
+    {
+        return $this->all($columns, $order, $sort);
+    }
+
+    public function findOrderByNumber($orderNumber)
+    {
+        return Order::where('order_number', $orderNumber)->first();
+    }
+
 }

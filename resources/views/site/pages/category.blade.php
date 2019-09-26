@@ -22,20 +22,26 @@
                         </header>
                         <div style="" class="filter-content collapse show" id="collapse22">
                             <div class="card-body">
-                                <form class="pb-3">
-                                    <div class="input-group">
-                                        <input class="form-control" placeholder="Search" type="text">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button"><i class="fa fa-search"></i></button>
-                                        </div>
-                                    </div>
-                                </form>
-
                                 <ul class="list-unstyled list-lg">
-                                    <li><a href="#">Cras justo odio <span class="float-right badge badge-light round">142</span> </a></li>
-                                    <li><a href="#">Dapibus ac facilisis  <span class="float-right badge badge-light round">3</span>  </a></li>
-                                    <li><a href="#">Morbi leo risus <span class="float-right badge badge-light round">32</span>  </a></li>
-                                    <li><a href="#">Another item <span class="float-right badge badge-light round">12</span>  </a></li>
+                                    @foreach($categories as $cate)
+                                        @foreach($cate->items as $categorys)
+                                            @if ($categorys->items->count() > 0)
+                                                <li>
+                                                    <a class="stroke" href="{{ route('category.show', $categorys->slug) }}" id="{{ $categorys->slug }}"
+                                                        aria-haspopup="true" aria-expanded="false">{{ $categorys->name }}</a>
+                                                    <div class="dropdown-menu" aria-labelledby="{{ $categorys->slug }}">
+                                                        @foreach($categorys->items as $item)
+                                                            <a class="dropdown-item" href="{{ route('category.show', $item->slug) }}">{{ $item->name }}</a>
+                                                        @endforeach
+                                                    </div>
+                                                </li>
+                                                @else
+                                                    <li class="stroke">
+                                                        <a class="stroke" href="{{ route('category.show', $categorys->slug) }}">{{ $categorys->name }}<span class="float-right badge badge-light round">{{$categorys->products->count()}}</span></a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                        @endforeach
                                 </ul>
                             </div>
                             <!-- card-body.// -->
@@ -99,7 +105,7 @@
                                 <div class="action-wrap">
                                     @if ($product->sale_price != 0)
                                     <div class="price-wrap h4">
-                                        <span class="price">{{ config('settings.currency_symbol').$product->sale_price }}</span>
+                                        <span class="price text-success">{{ config('settings.currency_symbol').$product->sale_price }}</span>
                                         <del class="price-old"> {{ config('settings.currency_symbol').$product->price }}</del>
                                     </div>
                                     @else

@@ -23,20 +23,12 @@ class ViewComposerServiceProvider extends ServiceProvider
             $view->with('categories', Category::orderByRaw('-name ASC')->get()->nest());
         });
 
-        View::composer('site.pages.category2', function ($view) {
-            $view->with('categories', Category::orderByRaw('-name ASC')->get()->nest());
-        });
-
-        View::composer('site.pages.category2', function ($view) {
-            $view->with('products', Product::orderByRaw('-name ASC')->get());
-        });
-
-        View::composer('site.pages.category2', function ($view) {
-            $view->with('images', ProductImage::all());
-        });
-
         View::composer('site.partials.header', function ($view) {
             $view->with('cartCount', Cart::getContent()->count());
+        });
+
+        View::composer('site.pages.category', function ($view) {
+            $view->with('categories', Category::orderByRaw('-name ASC')->get()->nest());
         });
     }
 
