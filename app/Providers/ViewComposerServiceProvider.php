@@ -30,6 +30,10 @@ class ViewComposerServiceProvider extends ServiceProvider
         View::composer('site.pages.category', function ($view) {
             $view->with('categories', Category::orderByRaw('-name ASC')->get()->nest());
         });
+
+        View::composer('site.pages.homepage', function ($view) {
+            $view->with('products', Product::orderByRaw('-name ASC')->get());
+        });
     }
 
 }

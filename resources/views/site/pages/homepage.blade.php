@@ -26,53 +26,39 @@
                   </div>
                   <!-- col.// -->
                   <div class="col-md-3">
+                      @foreach ($products as $item)
+                      @if ($item->featured == 1)
                       <div class="card mt-2 mb-2">
                           <figure class="itemside">
                               <div class="aside">
-                                  <div class="img-wrap img-sm border-right"><img src="images/items/3.jpg"></div>
+                                @if ($item->images->count() > 0)
+                                @foreach($item->images as $image)
+                                  <div class="img-wrap img-sm border-right"><img src="{{ asset('storage/'.$image->full) }}"></div>
+                                @endforeach
+                                @else
+                                <div class="img-wrap img-sm border-right"><img src="https://via.placeholder.com/176"></div>
+                                @endif
+                               
                               </div>
                               <figcaption class="p-3">
-                                  <h6 class="title"><a href="#">Some name of item goes here nice</a></h6>
+                                  <h6 class="title"><a href="#">{{$item->name}}</a></h6>
+                                  @if ($item->sale_price > 0)
                                   <div class="price-wrap">
-                                      <span class="price-new b">$1280</span>
-                                      <del class="price-old text-muted">$1980</del>
+                                      <span class="price-new b">{{ config('settings.currency_symbol').$item->sale_price }}</span>
+                                      <del class="price-old text-muted">{{ config('settings.currency_symbol').$item->price }}</del>
                                   </div>
+                                  @else
+                                  <div class="price-wrap">
+                                        <span class="price-new b">{{ config('settings.currency_symbol').$item->price }}</span>
+                                    </div>
+                                  @endif
                                   <!-- price-wrap.// -->
                               </figcaption>
                           </figure>
                       </div>
-                      <!-- card.// -->
-                      <div class="card mb-2">
-                          <figure class="itemside">
-                              <div class="aside">
-                                  <div class="img-wrap img-sm border-right"><img src="images/items/3.jpg"></div>
-                              </div>
-                              <figcaption class="p-3">
-                                  <h6 class="title"><a href="#">Some name of item goes here nice</a></h6>
-                                  <div class="price-wrap">
-                                      <span class="price-new b">$1280</span>
-                                      <del class="price-old text-muted">$1980</del>
-                                  </div>
-                                  <!-- price-wrap.// -->
-                              </figcaption>
-                          </figure>
-                      </div>
-                      <!-- card.// -->
-                      <div class="card mb-2">
-                          <figure class="itemside">
-                              <div class="aside">
-                                  <div class="img-wrap img-sm border-right"><img src="images/items/3.jpg"></div>
-                              </div>
-                              <figcaption class="p-3">
-                                  <h6 class="title"><a href="#">Some name of item goes here nice</a></h6>
-                                  <div class="price-wrap">
-                                      <span class="price-new b">$1280</span>
-                                      <del class="price-old text-muted">$1980</del>
-                                  </div>
-                                  <!-- price-wrap.// -->
-                              </figcaption>
-                          </figure>
-                      </div>
+                      @endif
+                      @endforeach
+                      
                       <!-- card.// -->
                   </div>
                   <!-- col.// -->
@@ -92,7 +78,7 @@
                       <article class="overlay overlay-cover d-flex align-items-center justify-content-center">
                           <div class="text-center">
                               <h5 class="card-title">Limited</h5>
-                              <a href="#" class="btn btn-warning btn-sm"> View All </a>
+                              <span style="color: #fee600;"><i class="fas fa-thumbs-up fa-3x"></i></span>
                           </div>
                       </article>
                   </div>
@@ -103,18 +89,18 @@
                       <article class="overlay overlay-cover d-flex align-items-center justify-content-center">
                           <div class="text-center">
                               <h5 class="card-title">Original Product</h5>
-                              <a href="#" class="btn btn-warning btn-sm"> View All </a>
+                              <span style="color: #fee600;"><i class="far fa-check-circle fa-3x"></i></span>
                           </div>
                       </article>
                   </div>
                   <!-- card.// -->
               </div>
               <div class="col-md-4">
-                  <div class="card-banner" style="height:250px; background-image: url('images/posts/3.jpg');">
+                  <div class="card-banner" style="height:250px; background-image: url('us/kotak.png');">
                       <article class="overlay overlay-cover d-flex align-items-center justify-content-center">
                           <div class="text-center">
                               <h5 class="card-title">Warranty</h5>
-                              <a href="#" class="btn btn-warning btn-sm"> View All </a>
+                              <span style="color: #fee600;"><i class="far fa-smile fa-3x"></i></span>
                           </div>
                       </article>
                   </div>
@@ -125,5 +111,44 @@
       </div>
   </section>
   <!-- ========================= Blog .END// ========================= -->
+  <section class="section-content padding-y-sm bg">
+        <div class="container">
 
+            <header class="section-heading heading-line text-center">
+                <h4 class="title-section"><span class="brushstroke">Featured Products</span></h4>
+            </header>
+            <div class="row">
+                @foreach ($products as $item)
+                @if ($item->featured == 1)
+                <div class="col-md-4">
+                    <figure class="card card-product">
+                        @if ($item->images->count() > 0)
+                        @foreach($item->images as $image)
+                        <div class="img-wrap"><img src="{{ asset('storage/'.$image->full) }}"></div>
+                        @endforeach
+                        @else
+                        <div class="img-wrap"><img src="https://via.placeholder.com/176"></div>
+                        @endif
+                        <figcaption class="info-wrap">
+                            <h4 class="title">{{$item->name}}</h4>
+                        </figcaption>
+                        <div class="bottom-wrap">
+                            <a href="{{ route('product.show', $item->slug) }}" class="btn btn-sm btn-primary float-right">Details</a>
+                            <div class="price-wrap h5">
+                            @if ($item->sale_price > 0)
+                            <span class="price-new">{{$item->sale_price}}</span> <del class="price-old">{{$item->price}}</del>
+                            @else
+                            <span class="price-new">{{$item->price}}</span>
+                            @endif
+                            </div>
+                            <!-- price-wrap.// -->
+                        </div>
+                        <!-- bottom-wrap.// -->
+                    </figure>
+                </div>
+                @endif
+                @endforeach
+            </div>    
+        </div>
+  </section>    
 @stop
