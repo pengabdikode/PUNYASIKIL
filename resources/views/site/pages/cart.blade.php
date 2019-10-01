@@ -66,21 +66,6 @@
                     @endif
                 </main>
                 <aside class="col-sm-3">
-                    <section class="section-content bg padding-y border-top">
-                    <div class="container">
-                        <h3>Shipment Fee</h3>
-                            
-                            
-                            <form action="">
-                                <select name="province" id="province">
-
-                                </select>
-                            </form>
-                        </div>
-                    </section>
-                       
-                    
-                    
                     <a href="{{ route('checkout.cart.clear') }}" class="btn btn-primary btn-block mb-4">Clear Cart</a>
                     <p class="alert alert-success">Add USD 5.00 of eligible items to your order to qualify for FREE Shipping. </p>
                     <dl class="dlist-align h4">
@@ -106,26 +91,7 @@
             </div>
         </div>
     </section>
-@section('scripts')
-<script>
-        $(document).ready(function(){
-            $.ajax({
-                url : 'http://localhost:8000/province',
-                method: 'get',
-                dataType: 'JSON',
-                success : function(response){
-                    var data = response.data.rajaongkir.results
-                    $.each(data, function(key,val){
-                        $('#province').append(`<option value="`+ val.province_id +`">` +val.province + `</option>`)
-                    })
-                },
-            }) 
 
-
-           
-        })
-    </script>
-@endsection 
     
     
 @stop

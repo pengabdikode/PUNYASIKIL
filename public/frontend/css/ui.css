@@ -157,7 +157,8 @@ a:hover {
   background: linear-gradient(to bottom right, #007bff, #007bff);
   /* Standard syntax */
   -webkit-transition: .5s;
-  transition: .5s; }
+  transition: .5s;
+ }
 
 .hover-zoom:hover {
   -webkit-transition: .5s;
@@ -1729,12 +1730,12 @@ article:after,
 .slider-main .owl-next {
   right: 0; }
 .slider-main .item-slide {
-  height: 325px; }
+  height: 500px; }
   .slider-main .item-slide img {
     min-width: 100%;
     min-height: 100%;
-    -o-object-fit: cover;
-       object-fit: cover; }
+    -o-object-fit: contain;
+       object-fit: contain; }
 
 /* slide items  */
 .slide-items .owl-prev, .slide-items .owl-next {
@@ -1993,7 +1994,7 @@ ul.row, ul.row-sm {
     mix-blend-mode: multiply;
     max-width: 100%; }
   .card-banner .overlay {
-    background-color: rgba(0, 0, 0, 0.65);
+    background-color: #000;
     z-index: 10;
     padding: 1.25rem;
     color: #fff; }
@@ -2303,6 +2304,17 @@ nav.stroke ul li a:hover:after {
   color: #fff;
   background-color: #000000;
   border-color: #fee600;
+}
+
+.hero-image{
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('6.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  padding: 20px;
+  margin-bottom: 10px;
+  margin-top: 10px;
 }
        
   

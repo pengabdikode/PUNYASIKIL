@@ -9,7 +9,7 @@
         <section class="section-main bg padding-top-sm">
           <div class="container">
               <div class="row">
-                  <div class="col-md-9">
+                  <div class="col-md-12">
                       <!-- ================= main slide ================= -->
                       <div class="owl-init slider-main owl-carousel" data-items="1" data-dots="false" data-nav="true">
                           <div class="item-slide">
@@ -25,42 +25,7 @@
                       <!-- ============== main slidesow .end // ============= -->
                   </div>
                   <!-- col.// -->
-                  <div class="col-md-3">
-                      @foreach ($products as $item)
-                      @if ($item->featured == 1)
-                      <div class="card mt-2 mb-2">
-                          <figure class="itemside">
-                              <div class="aside">
-                                @if ($item->images->count() > 0)
-                                @foreach($item->images as $image)
-                                  <div class="img-wrap img-sm border-right"><img src="{{ asset('storage/'.$image->full) }}"></div>
-                                @endforeach
-                                @else
-                                <div class="img-wrap img-sm border-right"><img src="https://via.placeholder.com/176"></div>
-                                @endif
-                               
-                              </div>
-                              <figcaption class="p-3">
-                                  <h6 class="title"><a href="#">{{$item->name}}</a></h6>
-                                  @if ($item->sale_price > 0)
-                                  <div class="price-wrap">
-                                      <span class="price-new b">{{ config('settings.currency_symbol').$item->sale_price }}</span>
-                                      <del class="price-old text-muted">{{ config('settings.currency_symbol').$item->price }}</del>
-                                  </div>
-                                  @else
-                                  <div class="price-wrap">
-                                        <span class="price-new b">{{ config('settings.currency_symbol').$item->price }}</span>
-                                    </div>
-                                  @endif
-                                  <!-- price-wrap.// -->
-                              </figcaption>
-                          </figure>
-                      </div>
-                      @endif
-                      @endforeach
-                      
-                      <!-- card.// -->
-                  </div>
+                
                   <!-- col.// -->
               </div>
           </div>
@@ -68,10 +33,10 @@
       </section>
       <!-- ========================= Blog ========================= -->
     <section class="section-content padding-y-sm bg">
+            <div class="hero-image">
       <div class="container">
-          <header class="section-heading heading-line">
-              <h4 class="title-section"><span class="brushstroke">Our Services</span></h4>
-          </header>
+          
+   
           <div class="row">
               <div class="col-md-4">
                   <div class="card-banner" style="height:250px; background-image: url('images/posts/1.jpg');">
@@ -108,6 +73,7 @@
               </div>
 
           </div>
+          </div>
       </div>
   </section>
   <!-- ========================= Blog .END// ========================= -->
@@ -130,7 +96,7 @@
                         <div class="img-wrap"><img src="https://via.placeholder.com/176"></div>
                         @endif
                         <figcaption class="info-wrap">
-                            <h4 class="title">{{$item->name}}</h4>
+                            <h4 class="title"  style="text-align:center"><span class="brushstroke">{{$item->name}}</span></h4>
                         </figcaption>
                         <div class="bottom-wrap">
                             <a href="{{ route('product.show', $item->slug) }}" class="btn btn-sm btn-primary float-right">Details</a>

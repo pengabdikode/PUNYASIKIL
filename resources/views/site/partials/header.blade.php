@@ -3,9 +3,9 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-3">
-                        <form action="#" class="search-wrap">
+                <form action="{{route('search')}}" class="search-wrap">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Search">
+                                <input type="text" class="form-control" placeholder="Search" name="query" id="query" value="{{request()->input('query')}}">
                                     <div class="input-group-append">
                                         <button class="btn btn-primary" type="submit">
                                             <i class="fa fa-search"></i>

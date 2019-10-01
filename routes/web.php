@@ -42,9 +42,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/checkout/order', 'Site\CheckoutController@placeOrder')->name('checkout.place.order');
 });
 
-//RajaOngkir
-Route::get('/province', 'RajaController@province');
-Route::get('/cost', 'RajaController@cost');
+//Search
+Route::get('/search', 'SearchController@search')->name('search');
+
 
 //payment
 Route::get('checkout/payment/complete', 'Site\CheckoutController@complete')->name('checkout.payment.complete');
